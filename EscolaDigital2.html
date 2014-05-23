@@ -1,0 +1,146 @@
+<head>
+  <title>EscolaDigital</title>
+</head>
+
+<body>
+  <section class='container-fluid'>
+    {{> head}}
+    <section class='row-fluid body'>
+      {{> filters}}
+      {{> results}}
+    </section>
+  </section>
+</body>
+
+<template name='head'>
+  <section class='search_bar'>
+    <img src='logo_principal.png' class='logo'>
+    <input type='search' name='q' id='q' />
+    <button type='submit' name='submit' class='btn'> Buscar </button>
+  </section>
+</template>
+
+
+<template name='filters'>
+  <aside class='span4 filters'>
+    <section class='row-fluid'>
+      <section class='box'>
+        <h2>Disciplinas</h2>
+        {{#each disciplines}}
+        <label class='span6'>
+          <input type='checkbox' name="filter_0" />
+          {{this}}
+        </label>
+        {{/each}}
+      </section>
+    </section>
+
+    <section class='row-fluid'>
+      <section class='box'>
+        <h2>Ano/Série</h2>
+        {{#each years}}
+        <label class='span6'>
+          <input type='checkbox' name="filter_0" />
+          {{this}}
+        </label>    
+        {{/each}}
+      </section>
+    </section>
+  </aside>
+</template>
+
+<template name='results'>
+  <section class='span8 articles'>
+  {{#each articles}}
+    <article>
+      <h1>{{title}}</h1>
+
+      <img src="{{image_url}}" alt="{{title}}" title="{{title}}" />
+      
+      <p>{{summary}}</p>
+
+      <h3>Onde encontrar: <a href="{{link}}">{{link}}</a></h3>
+      
+      <h3>Tipo de mídia: {{media}}</h3>
+      
+      <h3>Categoria: {{category}}</h3>
+      
+      <h3>
+        Tags:
+        <ul>
+        {{#each tags}}
+          <li><a href="#">{{this}}</a></li>
+        {{/each}}
+        </ul>
+      </h3>
+      <dl>
+        <dt>disciplina:</dt>
+        <dd>{{discipline}}</dd>
+
+        <dt>ano/série</dt>
+        <dd>{{year}}</dd>
+
+        {{#if multidisciplinarities}}
+        <dt>mutidisciplinariedade:</dt>
+        <dd>
+          <ul>
+          {{#each multidisciplinarities}}
+            <li>{{this}}</li>
+          {{/each}}
+          </ul>
+        </dd>
+        {{/if}}
+
+        <dt>idioma:</dt>
+        <dd>{{language}}</dd>
+
+        <dt>país:</dt>
+        <dd>{{country}}</dd>
+
+        <dt>tema curricular:</dt>
+        <dd>
+          {{main_theme}}
+          <ul>
+          {{#each sub_themes}}
+            <li>{{this}}</li>
+          {{/each}}
+          </ul>
+        </dd>
+
+        <dt>disponibilidade:</dt>
+        <dd>
+          <ul>
+          {{#each availabilities}}
+            <li>{{this}}</li>
+          {{/each}}
+          </ul>
+        </dd>
+
+        {{#if crosscutting_theme}}
+        <dt>tema transversal:</dt>
+        <dd>{{crosscutting_theme}}</dd>
+        {{/if}}
+
+        <dt>uso:</dt>
+        <dd>{{usage}}</dd>
+
+        <dt>licença de uso:</dt>
+        <dd>{{license}}</dd>
+
+        <dt>sugerido por:</dt>
+        <dd>{{suggested_by}}</dd>
+
+        <dt>produzido por:</dt>
+        <dd>{{produced_by}}</dd>
+
+        <dt>odas relacionadas:</dt>
+        <dd>
+          {{#each related_content}}
+            <a href="{{this}}">{{this}}</a>
+          {{/each}}
+        </dd>
+      </dl>
+    </article>
+  {{/each}}
+  </section>
+</template>
