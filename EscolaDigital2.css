@@ -61,8 +61,50 @@ body{
   line-height: 16px;
   border-bottom: 1px solid #CCC;
 }
+.filters label {
+  color: #6d6e71;
+}
 
 .articles {
   background-color: white;
   padding-left: 40px;
 }
+.articles h1 {
+  font-size: 20px;
+  line-height: 20px;
+  margin-top: 0;
+}
+article img {
+  height: 120px;
+  float: right;
+}
+article h2, article h3 { 
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: normal;
+}
+article h3 { display: none }
+article.row-fluid {
+  display: table;
+  clear: both;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #DDD;
+  width: 96%;
+}
+article:first-child {
+  margin-top: 20px;
+}
+article .less_info { display: none }
+article .extra-info {
+  width: 96%;
+  display: none;
+  background-color: #EEE;
+  padding: 0 20px;
+  border-radius: 12px;
+}
+article dd {
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+article .odas { font-size: 12px }
