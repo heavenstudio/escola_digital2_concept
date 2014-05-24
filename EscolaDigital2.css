@@ -83,7 +83,6 @@ article h2, article h3 {
   line-height: 14px;
   font-weight: normal;
 }
-article h3 { display: none }
 article.row-fluid {
   display: table;
   clear: both;
@@ -96,9 +95,10 @@ article:first-child {
   margin-top: 20px;
 }
 article .less_info { display: none }
-article .extra-info {
+article .extra-info { display: none }
+
+article .extra-info .row-fluid {
   width: 96%;
-  display: none;
   background-color: #EEE;
   padding: 0 20px;
   border-radius: 12px;

@@ -62,98 +62,110 @@
 
 <template name='results'>
   <section class='span8 articles'>
-  <h2>{{articles_count}} resultados encontrados.</h2>
+  <h2>
+    {{articles_count}} resultados encontrados.
+    <select name='sort_field'>
+      <option value='rating' data-order='-1'>Classificação de Usuários Descendente</option>
+      <option value='rating' data-order='1'>Classificação de Usuários Ascendente</option>
+      <option value='created_at' data-order='-1'>Data de Criação Descendente</option>
+      <option value='created_at' data-order='1'>Data de Criação Ascendente</option>
+    </select>
+  </h2>
   {{#each articles}}
     <article class="row-fluid">
       <section class="span3 img">
         <img src="{{image_url}}" alt="{{title}}" title="{{title}}" />
       </section>
       <section class="span9">
-        <h1><a href="{{link}}" target="_blank">{{title}}</a></h1>
+        <h1>
+          <a href="{{link}}" target="_blank">{{title}}</a>
+          {{#each stars}}<i class="icon-star"></i>{{/each}}{{#each missing_stars}}<i class="icon-star-empty"></i>{{/each}}
+        </h1>
         
         <p>{{summary}}</p>
 
         <h2><b>Tipo de mídia:</b> {{media}}</h2>
         
-        {{#if category}}
-        <h3><b>Categoria:</b> {{category}}</h3>
-        {{/if}}
-        
-        <h3>
-          <b>Tags:</b> {{tags}}
-        </h3>
-        
-        <section class="row-fluid extra-info">
-          <section class="span4">
-            <dl>
-              <dt>Disciplina:</dt>
-              <dd>{{disciplines}}</dd>
+        <section class="extra-info">
+          {{#if category}}
+          <h3><b>Categoria:</b> {{category}}</h3>
+          {{/if}}
+          
+          <h3>
+            <b>Tags:</b> {{tags}}
+          </h3>
+          
+          <section class="row-fluid">
+            <section class="span4">
+              <dl>
+                <dt>Disciplina:</dt>
+                <dd>{{disciplines}}</dd>
 
-              <dt>Ano/Série</dt>
-              <dd>{{years}}</dd>
+                <dt>Ano/Série</dt>
+                <dd>{{years}}</dd>
 
-              {{#if multidisciplinarities}}
-              <dt>Mutidisciplinariedade:</dt>
-              <dd>
-                <ul>
-                {{#each multidisciplinarities}}
-                  <li>{{this}}</li>
-                {{/each}}
-                </ul>
-              </dd>
-              {{/if}}
+                {{#if multidisciplinarities}}
+                <dt>Mutidisciplinariedade:</dt>
+                <dd>
+                  <ul>
+                  {{#each multidisciplinarities}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+                </dd>
+                {{/if}}
 
-              <dt>Idioma:</dt>
-              <dd>{{language}}</dd>
+                <dt>Idioma:</dt>
+                <dd>{{idiom}}</dd>
 
-              <dt>País:</dt>
-              <dd>{{country}}</dd>
-            </dl>
-          </section>
-          <section class="span4">
-            <dl>
-              <dt>Tema Curricular:</dt>
-              <dd>
-                {{main_theme}}
-                <ul>
-                {{#each sub_themes}}
-                  <li>{{this}}</li>
-                {{/each}}
-                </ul>
-              </dd>
+                <dt>País:</dt>
+                <dd>{{country}}</dd>
+              </dl>
+            </section>
+            <section class="span4">
+              <dl>
+                <dt>Tema Curricular:</dt>
+                <dd>
+                  {{main_theme}}
+                  <ul>
+                  {{#each sub_themes}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+                </dd>
 
-              <dt>Disponibilidade:</dt>
-              <dd>
-                <ul>
-                {{#each availabilities}}
-                  <li>{{this}}</li>
-                {{/each}}
-                </ul>
-              </dd>
+                <dt>Disponibilidade:</dt>
+                <dd>
+                  <ul>
+                  {{#each availabilities}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+                </dd>
 
-              {{#if crosscutting_theme}}
-              <dt>Tema Transversal:</dt>
-              <dd>{{crosscutting_theme}}</dd>
-              {{/if}}
+                {{#if crosscutting_theme}}
+                <dt>Tema Transversal:</dt>
+                <dd>{{crosscutting_theme}}</dd>
+                {{/if}}
 
-              <dt>Uso:</dt>
-              <dd>{{usage}}</dd>
-            </dl>
-          </section>
-          <section class="span4">
-            <dl>
-              <dt>Licença de Uso:</dt>
-              <dd>{{license}}</dd>
+                <dt>Uso:</dt>
+                <dd>{{usage}}</dd>
+              </dl>
+            </section>
+            <section class="span4">
+              <dl>
+                <dt>Licença de Uso:</dt>
+                <dd>{{license}}</dd>
 
-              <dt>Sugerido Por:</dt>
-              <dd>{{suggested_by}}</dd>
+                <dt>Sugerido Por:</dt>
+                <dd>{{suggested_by}}</dd>
 
-              <dt>Produzido Por:</dt>
-              <dd>{{produced_by}}</dd>
-            </dl>
+                <dt>Produzido Por:</dt>
+                <dd>{{produced_by}}</dd>
+              </dl>
+            </section>
           </section>
         </section>
-
         <dl>
           <dt>ODAs Relacionadas:</dt>
           <dd class='odas'>
