@@ -108,3 +108,9 @@ article dd {
   margin-bottom: 10px;
 }
 article .odas { font-size: 12px }
+
+.search_bar ul {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}

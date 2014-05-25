@@ -54,7 +54,12 @@ if Meteor.isClient
   Template.results.stars = -> [1..this.rating]
   Template.results.creation_date = ->
     date = new Date(this.created_at)
-    "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()} #{date.getHours()}:#{date.getMinutes()}"
+    hour = date.getHours()
+    minutes = date.getMinutes()
+    hour = if hour < 10 then "0#{hour}" else "#{hour}"
+    minutes = if minutes < 10 then "0#{minutes}" else "#{minutes}"
+
+    "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()} #{hour}:#{minutes}"
   Template.results.missing_stars = ->
     return [] if this.rating == 5
     [1..(5-this.rating)]
