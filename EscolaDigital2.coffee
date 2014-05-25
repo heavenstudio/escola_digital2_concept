@@ -84,6 +84,37 @@ if Meteor.isClient
   }
 
   Template.filters.events = {
+    'click .all-disciplines': (e) ->
+      Session.set('disciplines', disciplines)
+      $("[name=disciplines]").prop('checked', true)
+      resetResults()
+
+    'click .no-disciplines': (e) ->
+      Session.set('disciplines', [])
+      $("[name=disciplines]").prop('checked', false)
+      resetResults()
+
+    'click .all-years': (e) ->
+      Session.set('years', years)
+      $("[name=years]").prop('checked', true)
+      resetResults()
+
+    'click .no-years': (e) ->
+      Session.set('years', [])
+      $("[name=years]").prop('checked', false)
+      resetResults()
+
+    'click .all-medias': (e) ->
+      Session.set('medias', medias)
+      $("[name=medias]").prop('checked', true)
+      resetResults()
+
+    'click .no-medias': (e) ->
+      Session.set('medias', [])
+      $("[name=medias]").prop('checked', false)
+      resetResults()
+
+
     'change [name=disciplines]': (e) ->
       value = $(e.target).closest('label').find('.text').text()
       currentDisciplines = Session.get('disciplines')
