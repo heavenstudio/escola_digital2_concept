@@ -52,6 +52,9 @@ if Meteor.isClient
     
   Template.results.articles_count = -> Session.get('articles_found')
   Template.results.stars = -> [1..this.rating]
+  Template.results.creation_date = ->
+    date = new Date(this.created_at)
+    "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()} #{date.getHours()}:#{date.getMinutes()}"
   Template.results.missing_stars = ->
     return [] if this.rating == 5
     [1..(5-this.rating)]
@@ -155,6 +158,9 @@ if Meteor.isClient
   $(window).scroll(loadContentIfEnded)
 
 if Meteor.isServer
+  Meteor.startup ->
+    Articles.find({}).forEach (article) -> Articles.update(article._id, {$set: {rating: Math.floor((Math.random() * 5) + 1)}})
+    Articles.find({}).forEach (article) -> Articles.update(article._id, {$set: {created_at: +(new Date())-(Math.random() * 100000000000) }})
   build_query = (disciplines, years, medias, keywords) ->
     query =
       disciplines: {$in: disciplines}
