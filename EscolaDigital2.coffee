@@ -30,9 +30,18 @@ if Meteor.isClient
   Session.setDefault('sort_field', 'rating')
   Session.setDefault('sort_order', -1)
 
+  scrollEvent = ->
+    @canScroll = true
+    $(window).scroll(loadContentIfEnded)
+
   loadContentIfEnded = ->
-    atBottom = $(window).scrollTop() >= $(document).height() - $(window).height() - 40
-    Session.set('limit', Session.get('limit')+10) if atBottom
+    atBottom = $(window).scrollTop() >= $(document).height() - $(window).height() - 400
+    console.log(atBottom, @canScroll)
+    if atBottom and @canScroll
+      @canScroll = false
+      $(window).off('scroll')
+      setTimeout(scrollEvent, 1000)
+      Session.set('limit', Session.get('limit')+10)
 
   Deps.autorun ->
     Meteor.subscribe "articles", Session.get('disciplines'), Session.get('years'), Session.get('medias'),
@@ -160,7 +169,7 @@ if Meteor.isClient
       loadContentIfEnded()
   }
 
-  $(window).scroll(loadContentIfEnded)
+  scrollEvent()
 
 if Meteor.isServer
   Meteor.startup ->
