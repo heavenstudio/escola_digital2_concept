@@ -32,49 +32,40 @@
   <aside class='span4 filters'>
     <section class='row-fluid'>
       <section class='box'>
-        <h2>Disciplinas</h2>
+        <h2>Disciplinas<span class='btns all-disciplines'>Todos</span>
+        <span class='btns'> | </span><span class='btns no-disciplines'>Nenhum</span></h2>
         {{#each disciplines}}
         <label class='span6'>
           <input type='checkbox' name="disciplines" checked='{{isDisciplineChecked}}' />
           <span class="text">{{this}}</span>
         </label>
         {{/each}}
-        <div class="span12 btn-group">
-          <button class="btn all-disciplines">Todos</button>
-          <button class="btn no-disciplines">Nenhum</button>
-        </div>
       </section>
     </section>
 
     <section class='row-fluid'>
       <section class='box'>
-        <h2>Ano/Série</h2>
+        <h2>Ano/Série<span class='btns all-years'>Todos</span>
+        <span class='btns'> | </span><span class='btns no-years'>Nenhum</span></h2>
         {{#each years}}
         <label class='span6'>
           <input type='checkbox' name="years" checked='{{isYearChecked}}' />
           <span class="text">{{this}}</span>
         </label>    
         {{/each}}
-        <div class="span12 btn-group">
-          <button class="btn all-years">Todos</button>
-          <button class="btn no-years">Nenhum</button>
-        </div>
       </section>
     </section>
 
     <section class='row-fluid'>
       <section class='box'>
-        <h2>Mídias</h2>
+        <h2>Mídias<span class='btns all-medias'>Todos</span>
+        <span class='btns'> | </span><span class='btns no-medias'>Nenhum</span></h2>
         {{#each medias}}
         <label class='span6'>
           <input type='checkbox' name="medias" checked='{{isMediaChecked}}' />
           <span class="text">{{this}}</span>
         </label>    
         {{/each}}
-        <div class="span12 btn-group">
-          <button class="btn all-medias">Todos</button>
-          <button class="btn no-medias">Nenhum</button>
-        </div>
       </section>
     </section>
   </aside>
@@ -82,9 +73,9 @@
 
 <template name='results'>
   <section class='span8 articles'>
-  <h2>
+  <h2 class='results'>
     {{articles_count}} resultados encontrados.
-    <select name='sort_field'>
+    <select name='sort_field' class='sortfield'>
       <option value='rating' data-order='-1'>Classificação Descendente</option>
       <option value='rating' data-order='1'>Classificação Ascendente</option>
       <option value='created_at' data-order='-1'>Data Descendente</option>
@@ -99,9 +90,8 @@
       <section class="span9">
         <h1>
           <a href="{{link}}" target="_blank">{{title}}</a>
-          {{#each stars}}<i class="icon-star"></i>{{/each}}{{#each missing_stars}}<i class="icon-star-empty"></i>{{/each}}
         </h1>
-        <p class='date'>{{creation_date}}</p>
+        <p class='date'>{{creation_date}} {{#each stars}}<i class="icon-star"></i>{{/each}}{{#each missing_stars}}<i class="icon-star-empty"></i>{{/each}}</p>
         
         <p>{{summary}}</p>
 

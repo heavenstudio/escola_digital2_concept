@@ -113,4 +113,30 @@ article .odas { font-size: 12px }
   display: inline-block;
   vertical-align: top;
   margin: 0;
+  float:right;
+  padding-right:10px;
 }
+
+h2.results {
+  font-size:18px;
+  color:#333;
+  border-bottom:1px solid #ddd;
+  margin-right:48px;
+  margin-bottom:30px;
+
+}
+.date{
+  color:#727272;
+  font-size: 12px;
+}
+.btns{
+  float:right;
+  font-size:12px;
+  color:#727272;
+  padding:0 2px;
+  cursor:pointer;
+}
+.sortfield{
+  float:right;
+}
+
